@@ -15,7 +15,10 @@ app.use(bodyParser.urlencoded({
 }))
 
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
-    if (!err) console.log('MongoDB connected')
+    if (!err) {
+        console.log('MongoDB connected')
+        app.listen(5000)
+    }
     else console.log(err)
 })
 
@@ -25,8 +28,4 @@ app.use('/users', userRoute)
 app.use('/todos', todoRoute)
 
 
-const port = process.env.PORT || 5000
 
-app.listen(port, () => {
-    console.log('Server running on port ' + port)
-})
