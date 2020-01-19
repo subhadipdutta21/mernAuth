@@ -1,9 +1,12 @@
 import React from 'react'
 import axios from 'axios'
-import { withRouter } from 'react-router'
+import { withRouter, Redirect } from 'react-router'
 import {Link} from 'react-router-dom'
+import {login} from '../actions/auth-action'
+import {connect} from 'react-redux'
 
-const Login = (props) => {
+const Login = ({login,isAuthenticated}) => {
+    console.log(isAuthenticated)
 
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
@@ -12,23 +15,12 @@ const Login = (props) => {
     const submit = (e) => {
         e.preventDefault()
         console.log(email, password)
-        login(email, password).then(res => {
-            if (res.token) {
-                localStorage.setItem('token',res.token)
-                props.history.push('/todo')
-            } else{
-                setErr(res.error)
-            }
-        })
+        login(email,password)   
     }
 
-    // login function
 
-    const login = (email, password) => {
-        return axios.post('/users/login', {
-            email,
-            password
-        }).then(res => res.data).catch(err => console.log(err))
+    if(isAuthenticated) {
+        return <Redirect to='/todo'/>
     }
 
     return (
@@ -65,4 +57,11 @@ const Login = (props) => {
     )
 }
 
-export default withRouter(Login)
+
+const mapStateToProps = state => {
+    return {        
+        isAuthenticated : state.authReducer.isAuthenticated
+    }
+}
+
+export default connect(mapStateToProps,{login})(withRouter(Login))

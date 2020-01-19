@@ -1,12 +1,16 @@
 import React from 'react';
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
+import Login from './Login';
 
 const ToDo = (props) => {
 
   const [todos, setTodos] = React.useState([])
+  const [token,setToken] = React.useState(null)
 
   React.useEffect(() => {
+    // console.log(localStorage.removeItem('token'))
+    setToken(localStorage.getItem('token'))
     axios.get('/todos/alltodos')
       .then(res => {
         console.log(res.data)
@@ -15,11 +19,12 @@ const ToDo = (props) => {
   }, [])
 
 
-  return (
+  return (    
+    token ? 
     <div className='container' style={{ width: '40%', paddingTop: '5%' }}>
       <h3>Todos List</h3>
       <table className="table table-striped" style={{ marginTop: 20 }}>
-        <thead>
+        <thead>        
           <tr>
             <th>Description</th>
             <th>Responsible</th>
@@ -41,7 +46,7 @@ const ToDo = (props) => {
         </tbody>
       </table>
       <Link to='/create'>Create todo</Link>
-    </div>
+    </div> : <Login/>
 
   );
 }

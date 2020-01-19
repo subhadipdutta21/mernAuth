@@ -8,6 +8,9 @@ const uri = config.get('URI')
 
 const app = express()
 
+const userRoute = require('./routes/Users')
+const todoRoute = require('./routes/Todos')
+
 app.use(bodyParser.json())
 app.use(cors())
 app.use(bodyParser.urlencoded({
@@ -22,8 +25,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, err =
     else console.log(err)
 })
 
-const userRoute = require('./routes/Users')
-const todoRoute = require('./routes/Todos')
+
 app.use('/users', userRoute)
 app.use('/todos', todoRoute)
 
