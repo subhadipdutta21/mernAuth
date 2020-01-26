@@ -7,6 +7,7 @@ import ToDo from './components/ToDo';
 import CreateTodo from './components/CreateTodo.js';
 import EditTodo from './components/EditTodo';
 import Navbar from './components/Navbar';
+import Users from './components/Users';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
             <Route path='/todo' component={ToDo} />
             <Route path='/create' component={CreateTodo} />
             <Route path='/edittodo/:id' component={EditTodo} />
+            <Route path='/users' component={Users} />
     </BrowserRouter>
     </div>
   );

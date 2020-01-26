@@ -5,8 +5,7 @@ import {Link} from 'react-router-dom'
 import {login} from '../actions/auth-action'
 import {connect} from 'react-redux'
 
-const Login = ({login,isAuthenticated}) => {
-    console.log(isAuthenticated)
+const Login = ({login,isAuthenticated, user}) => {    
 
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
@@ -19,7 +18,7 @@ const Login = ({login,isAuthenticated}) => {
     }
 
 
-    if(isAuthenticated) {
+    if(isAuthenticated || user) {
         return <Redirect to='/todo'/>
     }
 
@@ -60,7 +59,9 @@ const Login = ({login,isAuthenticated}) => {
 
 const mapStateToProps = state => {
     return {        
-        isAuthenticated : state.authReducer.isAuthenticated
+        isAuthenticated : state.authReducer.isAuthenticated,
+        user: state.authReducer.user
+        
     }
 }
 
