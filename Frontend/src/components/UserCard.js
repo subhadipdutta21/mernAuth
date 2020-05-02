@@ -1,8 +1,8 @@
 import React from 'react';
 
-const UserCard = ({title,bio}) => {
+const UserCard = ({ title, bio }) => {
     return (
-        <div className="card" style={{ width: "18rem", margin:"auto" }}>
+        <div className="card" style={{ width: "18rem", margin: "auto" }}>
             <img
                 src="https://www.w3schools.com/howto/img_avatar.png"
                 className="card-img-top"
@@ -10,7 +10,7 @@ const UserCard = ({title,bio}) => {
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">Some quick example text to build on the card title and make up .</p>
-                <button onClick={()=>console.log('clicked')}  type="button" className="btn btn-primary">Visit</button>
+                <button onClick={() => console.log('clicked')} type="button" className="btn btn-primary">Visit</button>
 
             </div>
         </div>

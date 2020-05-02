@@ -32,6 +32,7 @@ const login = (req,res) => {
     Users.findOne({
         email: req.body.email
     }).then(user => {
+        console.log(user)
         if (!user) res.json({ error: 'User does not exist' })
         else {
             //comparing the password
@@ -43,7 +44,7 @@ const login = (req,res) => {
 
                 jwt.sign(payload, config.get('jwtSecret'),(err,token)=>{
                     if(err) throw err
-                    res.send({token})
+                    res.send({token,user})
                 })
             } else res.send({error : "wrong password"})
         }
