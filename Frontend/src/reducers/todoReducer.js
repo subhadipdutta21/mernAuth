@@ -1,13 +1,16 @@
-const initState = []
+const initState = {
+    todos: null
+}
+
 
 export default function (state = initState, action) {
-    switch(action.type) {
-        case 'GET_TODO' : 
+    switch (action.type) {
+        case 'GET_TODO':
             return {
                 ...state,
-                todos : action.payload
+                todos: action.payload
             }
-        default : return state
-        
+        default: return state
+
     }
 }

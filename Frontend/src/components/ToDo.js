@@ -13,7 +13,7 @@ const ToDo = ({ getTodo, todos }) => {
 
   React.useEffect(() => {
     setToken(localStorage.getItem('token'))
-    getTodo()
+    getTodo().then(res=>console.log(res))
   }, [getTodo])
 
 
@@ -50,6 +50,7 @@ const ToDo = ({ getTodo, todos }) => {
 }
 
 const mapStateToProps = state => {
+  console.log('redux',state)
   return {
     todos : state.todoReducer.todos
   }

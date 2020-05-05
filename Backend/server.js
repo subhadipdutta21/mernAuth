@@ -17,6 +17,9 @@ app.use(bodyParser.urlencoded({
     extended: false
 }))
 
+app.use('/users', userRoute)
+app.use('/todos', todoRoute)
+
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
     if (!err) {
         console.log('MongoDB connected')
@@ -25,9 +28,6 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, err =
     else console.log(err)
 })
 
-
-app.use('/users', userRoute)
-app.use('/todos', todoRoute)
 
 
 

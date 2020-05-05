@@ -1,8 +1,10 @@
-import {combineReducers} from 'redux'
+import { combineReducers } from 'redux'
 import authReducer from './authReducer'
 import todoReducer from './todoReducer'
 
-export default combineReducers ({
+const rootReducer =  combineReducers ({
     authReducer,
     todoReducer
 })
+
+export default rootReducer

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const login = (email, password) => async dispatch=> {
+export const login = (email, password) => async dispatch => {
     return axios.post('/users/login', {
         email,
         password
@@ -8,33 +8,33 @@ export const login = (email, password) => async dispatch=> {
         console.log(res)
         dispatch({
             type: 'LOGIN_SUCCESS',
-            payload : res.data
+            payload: res.data
         })
     }).catch(err => {
         console.log(err)
         dispatch({
-           type : 'LOGIN_FAILED' 
+            type: 'LOGIN_FAILED'
         })
     })
 }
 
 export const register = (fName, lName, password, email) => async dispatch => {
-    return axios.post('/users/register',{
-        first_name : fName,
-        last_name:lName,
+    return axios.post('/users/register', {
+        first_name: fName,
+        last_name: lName,
         email,
         password
-    }).then(res=> {
+    }).then(res => {
         console.log(res.data)
         dispatch({
-            type : 'REGISTER_SUCCESS',
-            payload : res.data
+            type: 'REGISTER_SUCCESS',
+            payload: res.data
         })
     })
-    .catch(err=>{
-        console.log(err)
-        dispatch({
-            type : 'REGISTER_FAIL'
+        .catch(err => {
+            console.log(err)
+            dispatch({
+                type: 'REGISTER_FAIL'
+            })
         })
-    })
 }
