@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const config = require('config')
 let Users = require('../models/Users')
 
-const register =(req,res)=> {
+const register = (req, res) => {
     const userData = {
         first_name: req.body.first_name,
         last_name: req.body.last_name,
@@ -28,7 +28,7 @@ const register =(req,res)=> {
     }).catch(err => res.send('error ' + err))
 }
 
-const login = (req,res) => {
+const login = (req, res) => {
     Users.findOne({
         email: req.body.email
     }).then(user => {
@@ -36,19 +36,19 @@ const login = (req,res) => {
         if (!user) res.json({ error: 'User does not exist' })
         else {
             //comparing the password
-            if(bcrypt.compareSync(req.body.password, user.password)) {  
+            if (bcrypt.compareSync(req.body.password, user.password)) {
                 // passswords match
                 const payload = {
-                    id : user._id
+                    id: user._id
                 }
 
-                jwt.sign(payload, config.get('jwtSecret'),(err,token)=>{
-                    if(err) throw err
-                    res.send({token,user})
+                jwt.sign(payload, config.get('jwtSecret'), (err, token) => {
+                    if (err) throw err
+                    res.send({ token, user })
                 })
-            } else res.send({error : "wrong password"})
+            } else res.send({ error: "wrong password" })
         }
-    }).catch(err=> res.send('error '+err))
+    }).catch(err => res.send('error ' + err))
 }
 
 exports.login = login

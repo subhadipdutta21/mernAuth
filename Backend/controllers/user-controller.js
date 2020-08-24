@@ -1,6 +1,6 @@
 const Users = require('../models/Users')
 
-const getAllUsers = (req,res) => {
+const getAllUsers = (req, res) => {
     Users.find().then(user => {
         console.log(user)
         res.status(200).send(user)

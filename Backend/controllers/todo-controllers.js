@@ -1,7 +1,7 @@
 const Todos = require('../models/Todos')
 
 // create todo
-const createTodo =(req,res)=> {
+const createTodo = (req, res) => {
     const todoData = {
         description: req.body.desc,
         responsible: req.body.res,
@@ -15,17 +15,17 @@ const createTodo =(req,res)=> {
 }
 
 // get all todos
-const getAllTodos =(req,res)=> {
+const getAllTodos = (req, res) => {
     Todos.find().then(todos => res.json(todos)).catch(err => res.send(err))
 }
 
 // get single todo
-const getSingleTodo =(req,res)=> {
+const getSingleTodo = (req, res) => {
     Todos.findById(req.params.id).then(todo => res.json(todo)).catch(err => res.send(err))
 }
 
 // update todo
-const updateTodo =(req,res)=> {
+const updateTodo = (req, res) => {
     Todos.findByIdAndUpdate(req.params.id, {
         description: req.body.desc,
         responsible: req.body.res,
